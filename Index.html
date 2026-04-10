@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ईद मुबारक - Special Greeting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Premium CSS Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scrolling for particle effect */
+            height: 100%;
+            width: 100%;
+            font-family: 'Cairo', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Magical Night Background with Gradient */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #051937, #001f5c, #002d61, #003a63, #054661);
+        }
+
+        /* Main Container for the Card */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            perspective: 1000px;
+        }
+
+        /* Premium Frosted Glass Card Design - Spacing Reduced */
+        .eid-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 90%;
+            max-width: 420px; /* Slightly narrower for compact look */
+            padding: 25px 30px; /* Reduced padding */
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.05);
+            opacity: 0;
+            animation: cardEntrance 1.8s ease-out forwards;
+        }
+
+        /* Advanced Entrance Animation for the Card */
+        @keyframes cardEntrance {
+            0% { opacity: 0; transform: translateY(50px) scale(0.9) rotateX(-10deg); }
+            100% { opacity: 1; transform: translateY(0) scale(1) rotateX(0deg); }
+        }
+
+        /* 3D Moving Border/Glow ("Fickyfire" inspired) */
+        .eid-card::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(135deg, #f39c12, #e74c3c, #f1c40f, #2ecc71);
+            z-index: -1;
+            border-radius: 27px;
+            animation: borderGlow 6s linear infinite;
+            filter: blur(8px);
+        }
+
+        @keyframes borderGlow {
+            0% { filter: blur(8px) hue-rotate(0deg); }
+            100% { filter: blur(12px) hue-rotate(360deg); }
+        }
+
+        /* Typography - Golden Glowing Main Title - Reduced Margin */
+        h1.main-title {
+            font-family: 'Noto Serif Devanagari', serif;
+            font-size: 3em; /* Slightly smaller to fit compact layout */
+            margin-top: 0;
+            margin-bottom: 0px;
+            background: linear-gradient(to right, #f1c40f 0%, #fff 50%, #f1c40f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(241, 196, 15, 0.5), 0 0 20px rgba(241, 196, 15, 0.2); }
+            to { text-shadow: 0 0 20px rgba(241, 196, 15, 1), 0 0 30px rgba(241, 196, 15, 0.6); }
+        }
+
+        /* Stylized Sender Name Display */
+        .sender-name {
+            font-size: 1.3em;
+            color: #2ecc71;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 10px; /* Reduced gap */
+            min-height: 25px;
+        }
+
+        /* Stylized Sub-wish text */
+        .wishes-text {
+            font-family: 'Noto Serif Devanagari', serif;
+            font-size: 1.1em;
+            color: #ecf0f1;
+            line-height: 1.3;
+            margin-bottom: 15px; /* Reduced gap */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+            font-style: italic;
+        }
+
+        /* Image Styling (The GIF) */
+        .eid-gif {
+            max-width: 90%; /* Scaled down slightly */
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            margin-bottom: 15px; /* Reduced gap */
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+
+        /* Premium Form Elements */
+        .form-box {
+            margin-top: 5px;
+        }
+        
+        .form-box p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 8px; /* Reduced gap */
+            font-size: 0.95em;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 30px);
+            padding: 12px; /* Smaller padding */
+            border-radius: 30px;
+            border: 2px solid rgba(241, 196, 15, 0.5);
+            outline: none;
+            font-size: 15px;
+            background: rgba(0,0,0,0.3);
+            color: white;
+            text-align: center;
+            margin-bottom: 12px; /* Reduced gap */
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+        
+        input[type="text"]::placeholder { color: rgba(255,255,255,0.5); }
+        
+        input[type="text"]:focus {
+            border-color: #f1c40f;
+            box-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
+        }
+
+        /* Premium Button */
+        .btn-premium {
+            background: linear-gradient(135deg, #f1c40f, #e67e22, #f39c12);
+            background-size: 200% auto;
+            color: white;
+            border: none;
+            padding: 12px 20px; /* Tighter button */
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.5s;
+            box-shadow: 0 5px 15px rgba(241, 196, 15, 0.3);
+            margin-bottom: 10px; /* Space between buttons */
+        }
+
+        .btn-premium:hover {
+            background-position: right center;
+            box-shadow: 0 8px 20px rgba(241, 196, 15, 0.5);
+            transform: scale(1.02);
+        }
+
+        /* Share Area with Smooth Entrance */
+        #share-section {
+            display: none;
+            margin-top: 15px; /* Reduced gap */
+            padding-top: 15px; /* Reduced gap */
+            border-top: 1px solid rgba(255,255,255,0.1);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        #share-section p {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* WhatsApp Button */
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E, #075E54);
+            background-size: 200% auto;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="container">
+        <div class="eid-card">
+            
+            <h1 class="main-title">ईद मुबारक!</h1>
+            
+            <div id="sender-info" class="sender-name"></div>
+
+            <div class="wishes-text">
+                खुशियों भरी, नूरानी शाम हो,<br>
+                अल्लाह की रहमत आप पर तमाम हो.
+            </div>
+
+            <img src="eid.gif" alt="Eid Mubarak Wish" class="eid-gif">
+
+            <div class="form-box">
+                <p>इस मुबारक मौके पर अपने दोस्तों को विश करें:</p>
+                <input type="text" id="name-input" placeholder="यहाँ अपना नाम टाइप करें...">
+                <button class="btn-premium" onclick="createLink()">जादुई लिंक बनाएँ</button>
+            </div>
+
+            <div id="share-section">
+                <p>आपका जादुई लिंक तैयार है! भेजें:</p>
+                <button class="btn-premium btn-whatsapp" onclick="shareOnWhatsApp()">WhatsApp पर शेयर करें</button>
+                <button class="btn-premium" onclick="copyLink()">लिंक कॉपी करें</button>
+                <input type="hidden" id="generated-url">
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <script>
+        // --- Particle ("Fickyfire") Setup ---
+        tsParticles.load("bg-canvas", {
+            fpsLimit: 60,
+            particles: {
+                number: { value: 60, density: { enable: true, value_area: 800 } },
+                color: { value: "#f1c40f" }, 
+                shape: { type: "circle" },
+                opacity: { value: 0.6, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false } },
+                size: { value: { min: 1, max: 4 }, random: true, anim: { enable: true, speed: 4, size_min: 0.3, sync: false } },
+                links: { enable: false },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "top-right",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: { enable: true, rotateX: 600, rotateY: 1200 }
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "bubble" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                },
+                modes: {
+                    bubble: { distance: 200, size: 8, duration: 2, opacity: 0.8, speed: 3 },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+
+        // --- Core Application Logic ---
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const senderName = urlParams.get('name');
+
+            if (senderName) {
+                document.getElementById('sender-info').innerText = "✨ " + senderName + " की तरफ से ✨";
+                document.title = senderName + " ने आपको ईद विश किया है!";
+            } else {
+                document.getElementById('sender-info').innerText = "✨ आपको और आपके परिवार को ✨";
+            }
+        };
+
+        function createLink() {
+            const name = document.getElementById('name-input').value.trim();
+
+            if (name === "") {
+                alert("कृपया पहले अपना नाम टाइप करें!");
+                return;
+            }
+
+            const baseUrl = window.location.origin + window.location.pathname;
+            const shareableUrl = baseUrl + "?name=" + encodeURIComponent(name);
+
+            document.getElementById('generated-url').value = shareableUrl;
+            document.getElementById('share-section').style.display = 'block';
+        }
+
+        function shareOnWhatsApp() {
+            const urlToShare = document.getElementById('generated-url').value;
+            const message = "अस्सलाम वालेकुम! मैंने तुम्हारे लिए एक जादुई सरप्राइज भेजा है! इस लिंक पर क्लिक करके देखो: \n\n" + urlToShare;
+            const whatsappLink = "https://api.whatsapp.com/send?text=" + encodeURIComponent(message);
+            window.open(whatsappLink, '_blank');
+        }
+
+        function copyLink() {
+            const urlToShare = document.getElementById('generated-url').value;
+            navigator.clipboard.writeText(urlToShare).then(() => {
+                alert("लिंक कॉपी हो गया है! अब आप इसे कहीं भी पेस्ट कर सकते हैं.");
+            }).catch(err => {
+                alert("कॉपी नहीं हो पाया. आप URL बार से कॉपी कर सकते हैं.");
+            });
+        }
+    </script>
+
+</body>
+</html>
+<script>
+  atOptions = {
+    'key' : '74b4a3b7b32f6a940c8b979adc2fc35e',
+    'format' : 'iframe',
+    'height' : 60,
+    'width' : 468,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/74b4a3b7b32f6a940c8b979adc2fc35e/invoke.js"></script>
